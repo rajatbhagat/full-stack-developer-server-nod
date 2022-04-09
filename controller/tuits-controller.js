@@ -26,18 +26,22 @@ const findAllTuits = async (req, res) => {
 
 const updateTuit = async (req, res) => {
     console.log("In update tuis");
+    // console.log(req.params);
+    // console.log(req.body);
     const tuitdIdToUpdate = req.params.tid;
     const updatedTuit = req.body;
     const status = await updateTuitDao(tuitdIdToUpdate, updatedTuit);
+    // console.log(status)
     // tuits = tuits.map(t => t._id === tuitdIdToUpdate ? updatedTuit : t);
-    res.sendStatus(status);
+    res.send(status);
 }
 
 const deleteTuit = async (req, res) => {
     console.log("In delete tuis");
     const tuitdIdToDelete = req.params.tid;
     const status = await deleteTuitDao(tuitdIdToDelete);
-    res.sendStatus(status)
+    // console.log(status)
+    res.send(status)
 }
 
 export default (app) => {
@@ -46,7 +50,3 @@ export default (app) => {
     app.put('/api/tuits/:tid', updateTuit);
     app.delete('/api/tuits/:tid', deleteTuit);
 }
-
-
-
-
